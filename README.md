@@ -11,4 +11,4 @@ last updated April 1st, 2025
 as of April 1st, 2025
 
 ![Screenshot1](https://github.com/knangcas/flashcardsReactNative/blob/main/screenshots/ss1.png?raw=true)
-Current "Study" page in comparison to the web-app version. 
+Current "Study" page in comparison to the [web-app version](https://github.com/knangcas/SpringbootFlashcards) (on right side). 
