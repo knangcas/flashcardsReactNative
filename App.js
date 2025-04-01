@@ -4,6 +4,7 @@ import { Text, PlatformPressable } from '@react-navigation/elements';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Study from "./Tabs/Study";
 import Manage from "./Tabs/Manage";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
 
 
@@ -85,7 +86,7 @@ const MyTabs = createBottomTabNavigator({
 
 
 const Navigation = createStaticNavigation(MyTabs);
-
+const queryClient = new QueryClient();
 export default function App() {
-  return <Navigation />;
+  return <QueryClientProvider client={queryClient}><Navigation /></QueryClientProvider>;
 }

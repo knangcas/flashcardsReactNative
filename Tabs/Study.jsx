@@ -1,9 +1,20 @@
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {useState} from "react";
 import storage from "../storage";
+import {useQuery} from "@tanstack/react-query";
 
 export default function Study({route}) {
     const [currentCard, setCurrentCard] = useState(0);
+    const {isPending, error, data} = useQuery({
+        queryKey: ['flashCards'],
+        queryFn: getCards,
+    })
+
+    async function getCards() {
+        const cards = await storage.load({key:'flashcarddeck', id: '1'});
+        //console.log(cards);
+        return cards;
+    }
 
     console.log(route.params);
     return (
@@ -13,13 +24,7 @@ export default function Study({route}) {
 
             <View style={styles.flashCard}>
                 <Text style={styles.flashCardText}>
-                    What is the coolest name for the coolest man in the universe on planet earth lmao this doesn't make sense.?
-                    What is the coolest name for the coolest man in the universe on planet earth lmao this doesn't make sense.?
-                    What is the coolest name for the coolest man in the universe on planet earth lmao this doesn't make sense.?
-                    What is the coolest name for the coolest man in the universe on planet earth lmao this doesn't make sense.?
-                    What is the coolest name for the coolest man in the universe on planet earth lmao this doesn't make sense.?
-
-
+                    {isPending ? "Loading" : data.cards[currentCard].question}
                 </Text>
             </View>
 
