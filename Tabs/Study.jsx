@@ -2,8 +2,14 @@ import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {useState} from "react";
 import storage from "../storage";
 import {useQuery} from "@tanstack/react-query";
+import { JetBrainsMono_400Regular } from '@expo-google-fonts/jetbrains-mono/400Regular';
+import { useFonts } from '@expo-google-fonts/jetbrains-mono/useFonts';
 
 export default function Study({route}) {
+    let [fontsLoaded] = useFonts({
+        JetBrainsMono_400Regular,
+    })
+
     const [currentCard, setCurrentCard] = useState(0);
     const {isPending, error, data} = useQuery({
         queryKey: ['flashCards'],
@@ -21,6 +27,10 @@ export default function Study({route}) {
         <>
 
         <View style={styles.container}>
+
+                <Text style={styles.flashcardTopText}>
+                    Card {currentCard + 1} out of {data.cards.length}
+                </Text>
 
             <View style={styles.flashCard}>
                 <Text style={styles.flashCardText}>
@@ -72,16 +82,24 @@ const styles = StyleSheet.create({
     },
     flashCard: {
         height: '80%',
-        width: '98%',
-        marginVertical: 50,
+        width: '95%',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'white',
-        borderWidth: 1,
+        borderWidth: 0,
+        borderRadius: 10,
         marginHorizontal: 20,
     },
+    flashcardTopText: {
+        alignSelf:"flex-end",
+        marginRight: 15,
+        color:'white',
+        fontFamily: "JetBrainsMono_400Regular",
+        fontSize: 14,
+    },
     flashCardText: {
-        fontSize: 20,
+        fontSize: 16,
+        fontFamily: "JetBrainsMono_400Regular",
     }
 
 })
