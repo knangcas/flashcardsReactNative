@@ -1,12 +1,16 @@
-import { View, Platform } from 'react-native';
-import {createStaticNavigation, useLinkBuilder, useTheme} from '@react-navigation/native';
+import {View, Platform, StatusBar} from 'react-native';
+import {DefaultTheme, createStaticNavigation, useLinkBuilder, useTheme, DarkTheme} from '@react-navigation/native';
 import { Text, PlatformPressable } from '@react-navigation/elements';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Study from "./Tabs/Study";
 import Manage from "./Tabs/Manage";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
-
+const myTheme = {...DefaultTheme, colors : {
+  ...DefaultTheme.colors,
+    background: 'rgb(46, 46, 31)',
+    primary: 'rgb(137, 137, 93)'
+  }}
 
 function MyTabBar({ state, descriptors, navigation }) {
   const { colors } = useTheme();
@@ -53,7 +57,7 @@ function MyTabBar({ state, descriptors, navigation }) {
                   testID={options.tabBarButtonTestID}
                   onPress={onPress}
                   onLongPress={onLongPress}
-                  style={{ flex: 1, alignItems:"center", justifyContent: "center" }}
+                  style={{backgroundColor: 'black', flex: 1, alignItems:"center", justifyContent: "center" }}
               >
                 <Text style={{ marginTop: 25, marginBottom: 30,  color: isFocused ? colors.primary : colors.text }}>
                   {label}
@@ -88,5 +92,5 @@ const MyTabs = createBottomTabNavigator({
 const Navigation = createStaticNavigation(MyTabs);
 const queryClient = new QueryClient();
 export default function App() {
-  return <QueryClientProvider client={queryClient}><Navigation /></QueryClientProvider>;
+  return <QueryClientProvider client={queryClient}><StatusBar barStyle="light-content" /><Navigation theme={DarkTheme}/></QueryClientProvider>;
 }
