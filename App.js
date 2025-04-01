@@ -5,10 +5,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Study from "./Tabs/Study";
 import Manage from "./Tabs/Manage";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import { useFonts } from '@expo-google-fonts/orbitron/useFonts';
+import {Orbitron_400Regular} from "@expo-google-fonts/orbitron";
+
+
 
 const myTheme = {...DefaultTheme, colors : {
   ...DefaultTheme.colors,
-    background: 'rgb(46, 46, 31)',
+    background: '#2f2f2f',
     primary: 'rgb(137, 137, 93)'
   }}
 
@@ -68,7 +72,12 @@ function MyTabBar({ state, descriptors, navigation }) {
       </View>
   );
 }
+const headerFont = {
 
+    fontSize:20,
+    fontFamily: "Orbitron_400Regular"
+
+}
 
 const MyTabs = createBottomTabNavigator({
   tabBar: (props) => <MyTabBar {...props} />,
@@ -77,6 +86,7 @@ const MyTabs = createBottomTabNavigator({
       screen: Study,
       options: {
         title: 'Study',
+        headerTitleStyle: headerFont,
       },
     },
     Manage: {
@@ -92,5 +102,8 @@ const MyTabs = createBottomTabNavigator({
 const Navigation = createStaticNavigation(MyTabs);
 const queryClient = new QueryClient();
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Orbitron_400Regular,
+  });
   return <QueryClientProvider client={queryClient}><StatusBar barStyle="light-content" /><Navigation theme={DarkTheme}/></QueryClientProvider>;
 }
