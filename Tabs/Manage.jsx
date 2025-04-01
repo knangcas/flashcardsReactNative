@@ -1,5 +1,6 @@
 import {Text, View} from "react-native";
 import * as React from "react";
+import storage from "../storage";
 
 
 export default function Manage( {route} ) {

@@ -1,9 +1,10 @@
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import * as React from "react";
-
+import {useState} from "react";
+import storage from "../storage";
 
 export default function Study({route}) {
-    //const navigation = useNavigation();
+    const [currentCard, setCurrentCard] = useState(0);
+
     console.log(route.params);
     return (
         <>
@@ -53,12 +54,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderWidth:1,
+
     },
     button: {
+        backgroundColor: 'grey',
         width: '25%',
         height: 30,
-        borderWidth: 1,
+        borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
         marginHorizontal: 5,
