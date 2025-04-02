@@ -7,6 +7,8 @@ import Manage from "./Tabs/Manage";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import { useFonts } from '@expo-google-fonts/orbitron/useFonts';
 import {Orbitron_400Regular} from "@expo-google-fonts/orbitron";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+
 
 
 
@@ -81,6 +83,20 @@ const headerFont = {
 
 const MyTabs = createBottomTabNavigator({
   tabBar: (props) => <MyTabBar {...props} />,
+  screenOptions: ({route}) => ({
+    tabBarIcon: ({focused, color, size}) => {
+      let iconName;
+      if (route.name === 'Study') {
+        iconName = focused ? 'cards' : 'cards-outline';
+      } else if (route.name === 'Manage') {
+        iconName = focused ? 'content-save-all' : 'content-save-all-outline';
+      }
+
+      return <MaterialCommunityIcons name={iconName} size={size} color={color} focused={focused} />
+    },
+    tabBarActiveTintColor: 'white',
+    tabBarInactiveTintColor: 'grey',
+  }),
   screens: {
     Study: {
       screen: Study,

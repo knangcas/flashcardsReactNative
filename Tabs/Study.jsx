@@ -22,6 +22,9 @@ export default function Study({route}) {
         return cards;
     }
 
+    function nextCard() {
+        setCurrentCard((curr)=>curr + 1);
+    }
 
 
     console.log(route.params);
@@ -45,7 +48,7 @@ export default function Study({route}) {
                 <TouchableOpacity style={styles.button} onPress={()=>console.log("restart pressed")}>
                     <Text style={styles.buttonText}>Restart</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={()=>console.log("restart pressed")}>
+                <TouchableOpacity style={styles.button} onPress={nextCard}>
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={()=>console.log("restart pressed")}>
