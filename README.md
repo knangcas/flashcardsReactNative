@@ -1,5 +1,5 @@
 # FlashCards-ReactNative
-last updated April 1st, 2025
+last updated April 1st, 2025 (in progress)
 
 ## About
 - This is a React-Native implementation of [SpringbootFlashcards](https://github.com/knangcas/SpringbootFlashcards) (which is also an implemenation of my JavaFX application [FlashCards](https://github.com/knangcas/SpringbootFlashcards))
